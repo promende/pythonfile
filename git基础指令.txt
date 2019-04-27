@@ -1,0 +1,75 @@
+cd x:\\ff（进入x盘的ff文件夹）
+git init （仓库初始化）（成功建立会生成一个.git的隐藏文件夹）
+git add xxx.fff （将文件名为xxx后缀为fff的文件添加到暂存区）
+git add aaa.bbb
+git add ccc.ddd （这样可以一次提交多组文件到暂存区）
+git add -f xxx.yyy （将文件名为xxx后缀为yyy的文件强制添加到暂存区）
+git commit -m "xxx" （将之前add的全部文件提交到仓库）（xxx是本次提交的说明）
+执行git commit 后，出现x file changed，y insertions （x指的是被改动的文件个数，y是指插入了y行内容）
+git status （查看仓库当前的状态）
+git diff xxx.yyy （查看xxx.yyy的修改（变化））
+git diff HEAD -- xxx.yyy （查看xxx.yyy在工作区和版本库里面最新版本的区别）
+git log （显示从最近到最远的提交日志）（查看查看提交历史）
+git log --pretty=oneline （显示从最近到最远的提交日志）
+git log --pretty=oneline --abbrev-commit （查询历史提交）
+git reset --hard HEAD^ （回退到上一个版本）（一个^代表一个版本）（假设要回退一百个版本可以写为HEAD~100）（条件：未把本地版本库推送到远程）
+git reset --hard xxx (更改为版本号为xxx的版本)（commit id就是版本号）
+git reflog （记录每次命令）（可以在这找回版本号）（查看命令历史）
+每次修改都要将文件 git add 到暂存区再使用git commit提交
+git checkout -- xxx.yyy （撤销xxx.yyy在工作区的修改）（让xxx.yyy返回到最近一次git commit 或者 git add 时的状态）（用版本库里的版本替换工作区的版本，无论工作区是修改还是删除，都可以“一键还原”）
+（详细解释：一种是xxx.yyy自修改后还没有被放到暂存区，现在，撤销修改就回到和版本库一模一样的状态；一种是xxx.yyy已经添加到暂存区后，又作了修改，现在，撤销修改就回到添加到暂存区后的状态。）
+git reset HEAD xxx.yyy （撤销暂存区的修改）
+cat xxx.yyy （查看xxx.yyy的内容）
+rm xxx.yyy （删除xxx.yyy）（如果确实要将xxx.yyy从版本库删除需要加上 git rm git commit）
+git remote add zzz git@github.com:xxx/yyy.git （zzz是远程库名，xxx是github账户名，yyy是仓库名）
+git clone git@github.com:xxx/yyy.git （xxx是github账户名，yyy是仓库名）
+git push -u zzz xxx （第一次将zzz远程库的xxx分支推送到远程）
+git push zzz xxx （将远程库zzz的xxx分支推送到远程）（将xxx标签推送到远程）
+git push zzz --tags （推送远程库zzz的所有标签到远程）
+git push zzz :refs/tags/xxx （删除远程库zzz的xxx标签，但需要先将本地的xxx标签删除）
+git branch （列出所有分支，如果是当前分支会在当前分支前面标一个*号）
+git branch xxx （创建xxx分支）
+git checkout xxx （切换回xxx分支）
+git checkout -b xxx （创建并切换xxx分支）（相当于git branch xxx  git checkout xxx）
+git merge xxx （将xxx分支合并到master分支上）
+git merge --no-ff -m "merge with no-ff" dev （禁用Fast forward，将xxx分支合并到master分支上）
+git branch -d xxx （将xxx分支删除）
+git branch -D xxx （将xxx分支强行删除）
+git log --graph --pretty=oneline --addrev-commit （查看分支的合并情况）
+git stash （暂存此时文件）
+git stash list （查看暂存文件的存储位置）
+git stash apply （恢复暂存文件，但stash内容不删除）
+git stash apply xxx （恢复xxx暂存文件）（xxx通过git stash list查看）
+git stash drop （删除stash内容）
+git stash pop （恢复并删除暂存文件）
+git remote （查看远程库信息）
+git remote -v （查看远程库的详细信息）
+git remote rm xxx （删除xxx远程库）
+git pull （将最新的提交从分支中抓取下来）
+git checkout -b branch-name origin/xxx （在本地创建和远程分支对应的分支）
+git branch --set-upstream-to=origin/xxx yyy （设置xxx和yyy的链接）
+多人协作的工作模式通常是这样：
+首先，可以试图用git push origin <branch-name>推送自己的修改；
+如果推送失败，则因为远程分支比你的本地更新，需要先用git pull试图合并；
+如果合并有冲突，则解决冲突，并在本地提交；
+没有冲突或者解决掉冲突后，再用git push origin <branch-name>推送就能成功！
+如果git pull提示no tracking information，则说明本地分支和远程分支的链接关系没有创建，用命令git branch --set-upstream-to <branch-name> origin/<branch-name>。
+git rebase （将提交分支变成一条直线）
+git tag xxx （在xxx位置加入一个标签）
+git tag -a xxx -m "yyy" zzz （创建带有说明的标签）（xxx为标签名，yyy为说明，zzz为commit id）
+git tag （按字母顺序查看所有标签）
+git tag xxx yyy （对commit id为yyy的位置添加xxx标签）（xxx为标签名字，yyy为commit id）
+git show xxx  （查看xxx标签的信息）（xxx为标签名字）
+git tag -d xxx （删除xxx标签）
+如何参与一个开源项目呢？比如人气极高的bootstrap项目，这是一个非常强大的CSS框架，你可以访问它的项目主页https://github.com/twbs/bootstrap，点“Fork”就在自己的账号下克隆了一个bootstrap仓库，然后，从自己的账号下clone：
+git clone git@github.com:michaelliao/bootstrap.git
+一定要从自己的账号下clone仓库，这样你才能推送修改。如果从bootstrap的作者的仓库地址git@github.com:twbs/bootstrap.git克隆，因为没有权限，你将不能推送修改。
+gitee
+git remote add zzz git@gitee.com:xxx/yyy.git （zzz为远程库名，xxx为账户名，yyy为仓库名）
+在Git工作区的根目录下创建一个特殊的.gitignore文件，然后把要忽略的文件名填进去，Git就会自动忽略这些文件。
+git check-ignore - v xxx.yyy （查看xxx.yyy被gitignore的那个规则限制）
+git config --global alias.xxx yyy （用xxx代替yyy）（类似与typedef）（如果yyy不止一个单词，需要假设单引号）
+每个仓库的Git配置文件都放在.git/config文件中，别名就在[alias]后面，要删除别名，直接把对应的行删掉即可。而当前用户的Git配置文件放在用户主目录下的一个隐藏文件.gitconfig中。配置别名也可以直接修改这个文件，如果改错了，可以删掉文件重新通过命令配置。
+--global （全局参数，也就是这些命令在这台电脑的所有Git仓库下都有用。）
+master （主分支）
+git last （查看最近一次的提交）
