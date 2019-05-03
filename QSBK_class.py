@@ -87,6 +87,3 @@ class QSBK:
 
 spider = QSBK()
 spider.start()
-
-
-
