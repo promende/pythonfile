@@ -25,7 +25,7 @@ class QSBK:
             return page_source
 
         except urllib.error.URLError as e:
-            print("连接糗事百科失败,错误原因"+e.reason)
+            print("连接糗事百科失败,错误原因"+str(e.reason))
             return None
 
     def getPageItems(self,pageIndex):
