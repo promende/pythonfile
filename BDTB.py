@@ -3,7 +3,6 @@
 import urllib.request
 import urllib.error
 from bs4 import BeautifulSoup
-from selenium import webdriver
 
 
 class BDTB:
@@ -47,9 +46,14 @@ class BDTB:
 
     def printOnePage(self, pageNum):
         contents = self.getPageItems(pageNum)
-
+        self.writetofile(contents)
         for link in contents:
             print(link)
+
+    def writetofile(self, contents):
+        with open("data.txt", "w", encoding='utf-8') as f:
+            f.writelines('\n'.join(contents))
+
 
     def start(self):
         while True:
